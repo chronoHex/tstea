@@ -1,7 +1,9 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<h1 style="float:right">T's Tea</h1>
+{% if user.blogger == post.blogger %}
+    <a style="color=black; float:right; border: none; font-size:40px" class="btn btn-default" href="{% url 'edit_post' pk=post.pk %}"><span class="twung glyphicon glyphicon-pencil"></span></a>
+{% endif %}
 <br/>
 <h1>{{ post.title }}</h1>
 <p><strong>Written By:</strong> <a href="{{ post.blogger.get_absolute_url }}"> {{ post.blogger.user.first_name }}

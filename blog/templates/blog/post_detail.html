@@ -1,0 +1,18 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<h1 style="float:right">T's Tea</h1>
+<br/>
+<h1>{{ post.title }}</h1>
+<p><strong>Written By:</strong> <a href="{{ post.blogger.get_absolute_url }}"> {{ post.blogger.user.first_name }}
+    {{ post.blogger.user.last_name }}</a></p>
+<p><strong>Written On:</strong> {{ post.post_date }}</p>
+<p>{{ post.content|linebreaks }}</p>
+
+<h4>Comments:</h4>
+{% for comm in post.comment_set.all %}
+    <hr>
+<p><a href="{{ comm.commenter.get_absolute_url }}">{{ comm.commenter }}</a> --{{ comm.post_date }}</p>
+    <p> {{ comm.content }}</p>
+{% endfor %}
+{% endblock %}

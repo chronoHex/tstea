@@ -1,0 +1,10 @@
+{% extends "base_generic.html" %}
+{% block content %}
+    {% if user.is_authenticated %}
+        <h2>Hi {{ user.first_name }}, this is your profile pg </h2>
+        <!-- Add an edit bio, first name, last name etc. I think its. model.attr.save() buyt, lets look into it-->
+        <c style="color:red">Don't forget to implement profile editing.</c>
+    {% else %}
+        <p> You aren't logged in, please login <a href="{% url 'login'%}?next={{request.path}}">here </a></p>
+    {% endif %}
+{% endblock %}

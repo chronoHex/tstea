@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Blog Archive</h1>
+    <div style="width=100%">
+        <a style="color=black; float:right; border: none; font-size:40px" class="btn btn-default" href="{% url 'new_post' %}"><span class="twung glyphicon glyphicon-pencil"></span></a>
+    </div>
+    {% if post_list %}
+    <ul>
+        {% for post in post_list %}
+            <li>
+                <a href="{{ post.get_absolute_url}}">{{ post.title }}</a> by -- <a href="{{post.blogger.get_absolute_url}}"> {{ post.blogger.user }}</a> -- {{ post.post_date }}
+                <!-- TODO Implementation of create blog-->
+                {% if user.is_authenticated %}
+                    <!-- Button that allows creation of a blog pos -->
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>There are no posts in this blog.</p>
+    {% endif %}
+    {% endblock %}

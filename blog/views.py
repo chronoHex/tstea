@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Post, Comment, Blogger
-from .forms import NewPostForm
+from .forms import NewPostForm, ProfileEditForm, EditProfileForm
 from django.utils.timezone import now as curr_time
 from django.views import generic
 from django.shortcuts import redirect
@@ -33,9 +33,11 @@ class PostDetailView(generic.DetailView):
 class BloggerDetailView(generic.DetailView):
     model = Blogger
 
-
 class CommentDetailView(generic.DetailView):
     model = Comment
+
+if 1==0:
+    pass
 
 def new_post(request):
     if request.method == "POST":
@@ -56,10 +58,11 @@ def edit_post(request, pk):
         form = NewPostForm(request.POST, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
-            post.author = request.user
+            post.blogger = request.user
             post.published_date = curr_time()
             post.save()
             return redirect('post_detail', pk=post.pk)
     else:
         form = NewPostForm(instance=post)
     return render(request, 'blog/post_edit.html', {'form': form})
+

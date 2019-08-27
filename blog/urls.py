@@ -10,4 +10,5 @@ urlpatterns = [
     path('blogger/<int:pk>', views.BloggerDetailView.as_view(), name="blogger-detail"),
     path('posts/new_post/', views.new_post, name="new_post"),
     path('post/<int:pk>/edit/', views.edit_post, name='edit_post'),
+    path('accounts/profile/', TemplateView.as_view(template_name="user_profile.html"), name='profile'),
 ]

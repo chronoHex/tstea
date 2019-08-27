@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import include
 from django.urls import path
@@ -25,5 +26,5 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
     path('', RedirectView.as_view(url='/blog/')),
     path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/profile/', TemplateView.as_view(template_name="user_profile.html"), name='profile')
+    # path('accounts/profile/', TemplateView.as_view(template_name="user_profile.html"), name='profile'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
